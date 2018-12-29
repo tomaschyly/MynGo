@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row">
+		<div class="col-10">
+			<div class="panel">
+				<form action="/login" method="POST" novalidate>
+					<div class="row">
+						<div class="col-2">
+							<label for="email">Email or Username:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" name="email" id="email" value="">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label for="password">Password:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="password" name="password" id="password" value="">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-10">
+							<input type="submit" name="submit" value="Submit" class="submit button f-right">
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="navigation login-footer">
+				<a href="/account/create" class="button item">Create Account</a><a href="/login/guest" class="button item">Guest Login</a>
+			</div>
+		</div>
+	</div>
+</div>

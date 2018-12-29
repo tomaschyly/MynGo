@@ -1,0 +1,97 @@
+<div class="container">
+	<div class="row">
+		<div class="col-10">
+			<div class="panel">
+				<form action="/mysql/edit" method="POST" novalidate>
+					<input type="hidden" name="id" value="{{formdata.mysql_edit.id}}">
+
+					<div class="row">
+						<div class="col-2">
+							<label for="name">Name:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" name="name" id="name" value="{{formdata.mysql_edit.name}}">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label for="organization">Organization:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" name="organization" id="organization" value="{{formdata.mysql_edit.organization}}">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label for="host">Host:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" name="host" id="host" value="{{formdata.mysql_edit.host}}">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label for="port">Port:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" name="port" id="port" value="{{formdata.mysql_edit.port}}">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label for="username">Username:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" name="username" id="username" value="{{formdata.mysql_edit.username}}">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label for="password">Password:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" name="password" id="password" value="{{formdata.mysql_edit.password}}">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label for="database">Database:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" name="database" id="database" value="{{formdata.mysql_edit.database}}">
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-2">
+							<label for="ssl">SSL:</label>
+						</div>
+
+						<div class="col-8">
+							<input type="checkbox" name="ssl" id="ssl" class="tch-checkbox" value="1" {{#if formdata.mysql_edit.ssl}} checked="true"{{/if}}>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-10 navigation">
+							<a href="/mysql" class="button item">Back</a><input type="submit" name="submit" value="Submit" class="submit button item f-right">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

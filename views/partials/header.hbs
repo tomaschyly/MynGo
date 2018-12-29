@@ -1,0 +1,21 @@
+{{#if userLoggedIn}}
+	<div class="container">
+		<div class="row">
+			<div class="col-10">
+				<div class="panel no-white header-panel">
+					<header>
+						<nav>
+							<a href="/" title="Home" class="button{{IsCurrentPathClass "/" "==="}}">Home</a>
+							<a href="/mysql" title="MySQL" class="button{{IsCurrentPathClass "/mysql" "*"}}">MySQL</a>
+							<a href="/mongodb" title="MongoDB" class="button{{IsCurrentPathClass "/mongodb" "*"}}">MongoDB</a>
+							<a href="/snippet" title="Snippets" class="button{{IsCurrentPathClass "/snippet" "*"}}">Snippets</a>
+							<a href="/account" title="Account" class="button{{IsCurrentPathClass "/account" "*"}}">Account</a>
+							<a href="/about" title="About" class="button{{IsCurrentPathClass "/about" "*"}}">About</a>
+							<a href="/logout" title="Logout" class="button">Logout</a>
+						</nav>
+					</header>
+				</div>
+			</div>
+		</div>
+	</div>
+{{/if}}
