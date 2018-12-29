@@ -2,8 +2,8 @@ const {app, BrowserWindow} = require ('electron');
 const path = require ('path');
 
 /*** Make sure to have correct environment variable set or use this, but it needs to be commented out on live! ***/
-process.env.TCH_DEV_PLATFORM = 'true';
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+/*process.env.TCH_DEV_PLATFORM = 'true';
+process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;*/
 
 const singleAppLock = app.requestSingleInstanceLock ();
 

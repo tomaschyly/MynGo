@@ -2,13 +2,19 @@
 
 Database inspection and management system with interactive console.
 
+The idea is to have something similar to [phpMyAdmin](https://www.phpmyadmin.net/) or [Adminer](https://www.adminer.org/en/) in a desktop app form. It should be easy to manage many Databases and use interactive console to modify them. The target audience for this are mainly Web Developers.
+
 ## Installation
 
-*Coming soon...*
+1. Download latest release from [here](https://github.com/tomaschyly/MynGo/releases)
+2. Unzip anywhere you want to have the app installed.
+3. Run the app, optionally create shortcut to use.
 
 ## Important Notes
 
-*Coming soon...*
+This app is intended to be crossplatform, currently developed and tested on Windows 10 and MacOS. Ubuntu will follow.
+
+App is using [Electron](https://electronjs.org/) and [Express](https://expressjs.com/) as it was originally ment for me to learn using both Electron and Node.js in server environment.
 
 ## How to Use
 
