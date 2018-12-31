@@ -6,8 +6,8 @@ The idea is to have something similar to [phpMyAdmin](https://www.phpmyadmin.net
 
 ## Installation
 
-1. Download latest release from [here](https://github.com/tomaschyly/MynGo/releases)
-2. Unzip anywhere you want to have the app installed.
+1. Download latest release from [here](https://github.com/tomaschyly/MynGo/releases). Win32 is for Windows. Darwin is for MacOS.
+2. For Windows, unzip anywhere you want to have the app installed. For MacOS, unzip anywhere, then copy app to your Applications folder.
 3. Run the app, optionally create shortcut to use.
 
 ## Important Notes
