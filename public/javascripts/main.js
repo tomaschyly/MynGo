@@ -29,6 +29,8 @@ if (typeof (TCH.Main) === 'undefined') {
 				}, 5 * 1000);
 			}
 
+			this.MysqlDetail.Init ();
+
 			this.Navigation.Init ();
 
 			let selects = document.querySelectorAll ('select');
@@ -37,6 +39,8 @@ if (typeof (TCH.Main) === 'undefined') {
 					selects [i].classList.add ('tch-select');
 				}
 			}
+
+			this.TitleNav.Init ();
 
 			this.Toggle.Init ();
 
@@ -158,6 +162,42 @@ if (typeof (TCH.Main) === 'undefined') {
 			}
 		},
 
+		MysqlDetail: {
+			id: 0,
+
+			/**
+			 * Mysql detail initialization.
+			 */
+			Init () {
+				let container = document.getElementById ('mysql-detail');
+				let isCorrectView = container !== null;
+
+				if (isCorrectView) {
+					this.id = container.dataset.id;
+
+					TCH.Main.TitleNav.QueueAdd ({
+						label: 'Console',
+						href: `/mysql/console?id=${this.id}`
+					});
+
+					TCH.Main.TitleNav.QueueAdd ({
+						label: 'Import/Export',
+						href: `/mysql/import-export?id=${this.id}`
+					});
+
+					TCH.Main.TitleNav.QueueAdd ({
+						label: 'Alter Database',
+						href: `/mysql/alter?id=${this.id}`
+					});
+
+					TCH.Main.TitleNav.QueueAdd ({
+						label: 'New Table',
+						href: `/mysql/table/new?database-id=${this.id}`
+					});
+				}
+			}
+		},
+
 		Navigation: {
 			ajaxInProgress: null,
 
@@ -170,11 +210,7 @@ if (typeof (TCH.Main) === 'undefined') {
 				let links = document.querySelectorAll ('a');
 				links = Array.from (links).filter (link => !link.classList.contains ('js-navigation-ignore'));
 				for (let index in links) {
-					links [index].addEventListener ('click', function () {
-						event.preventDefault ();
-						
-						self.Load (this.href);
-					});
+					this.InitLink (links [index], true);
 				}
 
 				let forms = document.querySelectorAll ('form');
@@ -184,6 +220,21 @@ if (typeof (TCH.Main) === 'undefined') {
 						event.preventDefault ();
 						
 						self.SubmitForm (this);
+					});
+				}
+			},
+
+			/**
+			 * Initialize navigation on link.
+			 */
+			InitLink (link, verified = false) {
+				let self = this;
+
+				if (verified || !link.classList.contains ('js-navigation-ignore')) {
+					link.addEventListener ('click', function () {
+						event.preventDefault ();
+						
+						self.Load (this.href);
 					});
 				}
 			},
@@ -346,6 +397,81 @@ if (typeof (TCH.Main) === 'undefined') {
 						}
 					}});
 				}
+			}
+		},
+
+		TitleNav: {
+			title: null,
+			container: null,
+			queue: [],
+
+			/**
+			 * Title navigation initialization.
+			 */
+			Init () {
+				this.title = document.getElementById ('title-nav-title');
+				this.container = document.getElementById ('title-nav');
+
+				this.Clear ();
+
+				if (this.queue.length > 0) {
+					for (let i = 0; i < this.queue.length; i++) {
+						this.Add (this.queue [i]);
+					}
+
+					this.queue = [];
+				}
+			},
+
+			/**
+			 * Clear the navigation.
+			 */
+			Clear () {
+				if (this.title !== null && this.container !== null) {
+					this.title.classList.remove ('has-nav');
+
+					this.container.classList.add ('empty');
+					this.container.innerHTML = '';
+				}
+			},
+
+			/**
+			 * Add action to the navigation.
+			 * @param {object} params Parameters to define action
+			 * @return {Element}
+			 */
+			Add (params) {
+				let action = document.createElement (typeof (params.href) !== 'undefined' ? 'a' : 'button');
+				action.classList.value = 'button';
+
+				if (typeof (params.href) !== 'undefined') {
+					action.href = params.href;
+
+					TCH.Main.Navigation.InitLink (action);
+				}
+
+				if (typeof (params.onClick) !== 'undefined') {
+					action.addEventListener ('click', params.onClick);
+				}
+
+				action.innerHTML = params.label;
+
+				this.title.classList.add ('has-nav');
+				this.container.appendChild (action);
+				this.container.classList.remove ('empty');
+
+				if (typeof (params.onAdded) !== 'undefined') {
+					params.onAdded (action);
+				}
+
+				return action;
+			},
+
+			/**
+			 * Queue add actions.
+			 */
+			QueueAdd (params) {
+				this.queue.push (params);
 			}
 		},
 

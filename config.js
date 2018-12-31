@@ -22,42 +22,42 @@ let Config = {
 	 * Initialize config using express for environment.
 	 */
 	Init () {
-		let host = process.env.DB_HOST;
+		let host = process.env.MYNGO_DB_HOST;
 		if (typeof (host) !== 'undefined') {
 			this.db.host = host;
 		}
-		let port = process.env.DB_PORT;
+		let port = process.env.MYNGO_DB_PORT;
 		if (typeof (port) !== 'undefined') {
 			this.db.port = port;
 		}
-		let username = process.env.DB_USERNAME;
+		let username = process.env.MYNGO_DB_USERNAME;
 		if (typeof (username) !== 'undefined') {
 			this.db.username = username;
 		}
-		let password = process.env.DB_PASSWORD;
+		let password = process.env.MYNGO_DB_PASSWORD;
 		if (typeof (password) !== 'undefined') {
 			this.db.password = password;
 		}
-		let database = process.env.DB_DATABASE;
+		let database = process.env.MYNGO_DB_DATABASE;
 		if (typeof (database) !== 'undefined') {
 			this.db.database = database;
 		}
-		let ssl = process.env.DB_SSL;
+		let ssl = process.env.MYNGO_DB_SSL;
 		if (typeof (ssl) !== 'undefined' && ssl === 'true') {
 			this.db.ssl = true;
 		} else if (typeof (ssl) !== 'undefined') {
 			this.db.ssl = false;
 		}
-		let system = process.env.STORAGE_SYSTEM;
+		let system = process.env.MYNGO_STORAGE_SYSTEM;
 		if (typeof (system) !== 'undefined') {
 			this.storageSystem = system;
 		}
-		let url = process.env.MONGODB_URL;
+		let url = process.env.MYNGO_MONGODB_URL;
 		if (typeof (url) !== 'undefined') {
 			this.mongodb.url = url;
 		}
 
-		let directory = process.env.NEDB_DIRECTORY;
+		let directory = process.env.MYNGO_NEDB_DIRECTORY;
 		if (typeof (directory) !== 'undefined') {
 			this.nedb.directory = directory;
 		}

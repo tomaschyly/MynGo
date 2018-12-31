@@ -75,7 +75,8 @@ class MySQL extends Base {
 		}
 
 		this.templateData = {
-			title: `Database - ${model.data.name}`
+			title: `Database - ${model.data.name}`,
+			databaseId: request.query.id
 		};
 
 		response.render ('mysql/detail', this.templateData);
