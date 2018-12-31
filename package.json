@@ -12,10 +12,11 @@
 	"main": "main.js",
 	"scripts": {
 		"start": "electron .",
-		"debug": "electron --inspect=5858 ."
+		"debug": "cross-env MYNGO_DEV=true electron --inspect=5858 ."
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.0.1",
+		"cross-env": "^5.2.0",
 		"electron": "^4.0.0",
 		"eslint": "^5.10.0",
 		"eslint-plugin-react": "^7.11.1"

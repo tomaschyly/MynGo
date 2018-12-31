@@ -1,11 +1,11 @@
 const {app, BrowserWindow} = require ('electron');
 const path = require ('path');
 
-/*** Make sure to have correct environment variable set or use this, but it needs to be commented out on live! ***/
-/*process.env.TCH_DEV_PLATFORM = 'true';
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;*/
-
 const singleAppLock = app.requestSingleInstanceLock ();
+
+if (typeof (process.env.MYNGO_DEV) !== 'undefined' && process.env.MYNGO_DEV === 'true') {
+	process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = true;
+}
 
 let Main = {
 	window: null,
@@ -73,7 +73,7 @@ let Main = {
 
 			this.window.show ();
 
-			if (typeof (process.env.TCH_DEV_PLATFORM) !== 'undefined' && process.env.TCH_DEV_PLATFORM === 'true') {
+			if (typeof (process.env.MYNGO_DEV) !== 'undefined' && process.env.MYNGO_DEV === 'true') {
 				this.window.webContents.openDevTools ();
 			}
 		});

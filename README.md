@@ -14,7 +14,9 @@ The idea is to have something similar to [phpMyAdmin](https://www.phpmyadmin.net
 
 This app is intended to be crossplatform, currently developed and tested on Windows 10 and MacOS. Ubuntu will follow.
 
-App is using [Electron](https://electronjs.org/) and [Express](https://expressjs.com/) as it was originally ment for me to learn using both Electron and Node.js in server environment.
+App is using [Electron](https://electronjs.org/) and [Express](https://expressjs.com/) as it was originally ment for me to learn using and simultaneously improve in both Electron and Node.js in server environment.
+
+App is currently not codesigned which means that on Windows it will ask you once and on MacOS repeatedly for network access.
 
 ## How to Use
 
