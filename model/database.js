@@ -192,6 +192,34 @@ class Database {
 	}
 
 	/**
+	 * Get list of tables in database.
+	 */
+	async FetchTables () {
+		let tables = [];
+
+		switch (this.storageSystem) {
+			case 'mysql': {
+				let sql = this.engine.TablesQuery ();
+
+				let rows = await this.engine.RawQuery (sql);
+
+				for (let i = 0; i < rows.length; i++) {
+					tables.push (rows [i].table_name);
+				}
+				break;
+			}
+			case 'mongodb':
+				//TODO
+				break;
+			case 'nedb': 
+				//TODO
+				break;
+		}
+
+		return tables;
+	}
+
+	/**
 	 * Get count of results for current query.
 	 */
 	async Count () {
@@ -321,6 +349,8 @@ class MySQL {
 	 * MySQL connection initialization.
 	 */
 	constructor (config) {
+		this.config = config;
+
 		this.connection = mysql.createConnection ({
 			host: config.db.host,
 			port: config.db.port,
@@ -410,6 +440,13 @@ class MySQL {
 		}
 
 		return sql;
+	}
+
+	/**
+	 * Query to list tables of database.
+	 */
+	TablesQuery () {
+		return `SELECT table_name FROM information_schema.tables where table_schema='${this.config.db.database}';`;
 	}
 
 	/**

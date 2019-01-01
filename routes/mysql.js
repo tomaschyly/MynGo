@@ -6,6 +6,9 @@ const Grid = require ('../model/grid');
 const MySQLDBModel = require ('../model/database/mysql');
 const MySQLBridgeDBModel = require ('../model/database/mysql/bridge');
 const Form = require ('../model/form');
+const clone = require ('clone');
+const extend = require ('extend');
+const Database = require ('../model/database');
 
 class MySQL extends Base {
 	/**
@@ -78,6 +81,20 @@ class MySQL extends Base {
 			title: `Database - ${model.data.name}`,
 			databaseId: request.query.id
 		};
+
+		let mysqlConfig = extend (true, clone (require ('../config')), {
+			db: {
+				host: model.data.host,
+				port: model.data.port,
+				username: model.data.username,
+				password: model.data.password,
+				database: model.data.database,
+				ssl: parseInt (model.data.ssl) === 1 ? true : false
+			},
+			storageSystem: 'mysql'
+		});
+		let tables = await new Database.Class (mysqlConfig).FetchTables ();
+		this.templateData.tables = tables;
 
 		response.render ('mysql/detail', this.templateData);
 	}
@@ -320,7 +337,9 @@ class MySQL extends Base {
 			mysql.data.user_id = request.session.user.id;
 
 			let now = Math.round (new Date ().getTime () / 1000);
-			mysql.data.created = now;
+			if (id === null) {
+				mysql.data.created = now;
+			}
 			mysql.data.updated = now;
 
 			await mysql.Save ();

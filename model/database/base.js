@@ -58,6 +58,10 @@ class Base {
 		let database = new Database ();
 		let old = this.id !== null ? await database.SelectTable ('*', this.table).Where ('id', database.WHERE_CONDITIONS.Equal, this.id).Fetch () : null;
 
+		if (old !== null) {
+			this.data = extend (old, this.data);
+		}
+
 		let saveData = extend (this.Defaults (), this.data);
 
 		database = new Database ();
