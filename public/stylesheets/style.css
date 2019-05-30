@@ -7,6 +7,17 @@
 	src: url("../font/CaveHand.ttf");
 }
 
+/*** Animations ***/
+@keyframes spin {
+	0% {
+		transform:rotate(0deg)
+	}
+	to {
+		transform:rotate(1turn)
+	}
+}
+.spin { animation:spin 2s infinite linear; }
+
 /*** Global ***/
 * { box-sizing: border-box; }
 
@@ -100,6 +111,8 @@ button svg { display: block; width: 18px; height: 18px; padding: 2px; }
 .flashes .flash.error { color: red; }
 .flashes .flash.success { color: green; }
 
+.progress { display: block; width: 40px; height: 40px; margin-bottom: 16px; }
+
 /*** Frame titlebar styles ***/
 #titlebar { display: flex; background: black; -webkit-user-select: none; -webkit-app-region: drag; }
 #title { display: inline-block; flex-grow: 1; padding: 8px 8px 8px 138px; color: white; font-size: 14px; text-align: center; }
@@ -180,7 +193,7 @@ header nav a.button:last-child { border-right-width: 0; }
 .tch-grid-body .tch-grid-row:focus { border-top-color: black; border-bottom-color: black; }
 .tch-grid-body .tch-grid-row:first-of-type { border-top-width: 0; }
 .tch-grid-body .tch-grid-row:last-of-type { border-bottom-width: 0; }
-.tch-grid-col { display: flex; flex-wrap: wrap; flex-basis: 0; flex-grow: 1; align-items: center; padding: 4px; }
+.tch-grid-col { display: flex; flex-wrap: wrap; flex-basis: 0; flex-grow: 1; align-items: center; padding: 4px; word-break: break-all; }
 .tch-grid-col.center { justify-content: center; }
 .tch-grid-col.right { justify-content: flex-end; }
 .tch-grid-header .tch-grid-col { font-size: 18px; }

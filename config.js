@@ -1,4 +1,4 @@
-const path = require ('path');
+/*const path = require ('path');*/
 
 let Config = {
 	db: { /** Updated from ENVIRONMENT if found **/
@@ -22,7 +22,8 @@ let Config = {
 	 * Initialize config using express for environment.
 	 */
 	Init () {
-		let host = process.env.MYNGO_DB_HOST;
+		/*** SHOULD NOT BE USED WITH ELECTRON APP, ONLY USE WHEN SERVER (WEB, API, etc.) ***/
+		/*let host = process.env.MYNGO_DB_HOST;
 		if (typeof (host) !== 'undefined') {
 			this.db.host = host;
 		}
@@ -62,7 +63,7 @@ let Config = {
 			this.nedb.directory = directory;
 		}
 		this.nedb.directory = this.nedb.directory.split (/\//g);
-		this.nedb.directory = path.join (...this.nedb.directory);
+		this.nedb.directory = path.join (...this.nedb.directory);*/
 	}
 };
 

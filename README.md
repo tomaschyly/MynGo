@@ -1,5 +1,7 @@
 # MynGo
 
+**NOTICE: This one is on hold. I have decided not to continue to use Express inside Electron. Instead I may refactor with React which I use in [FileCtor](https://github.com/tomaschyly/FileCtor).**
+
 Database inspection and management system with interactive console.
 
 The idea is to have something similar to [phpMyAdmin](https://www.phpmyadmin.net/) or [Adminer](https://www.adminer.org/en/) in a desktop app form. It should be easy to manage many Databases and use interactive console to modify them. The target audience for this are mainly Web Developers.

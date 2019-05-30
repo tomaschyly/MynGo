@@ -33,6 +33,8 @@ class MySQL extends Base {
 		app.use ('/', router.get ('/mysql/edit', this.RenderMysqlEdit.bind (this)));
 
 		app.use ('/', router.post ('/mysql/edit', this.ProcessMysqlEdit.bind (this)));
+
+		app.use ('/', router.get ('/mysql/tables', this.JsonMysqlTables.bind (this)));
 	}
 
 	/**
@@ -81,20 +83,6 @@ class MySQL extends Base {
 			title: `Database - ${model.data.name}`,
 			databaseId: request.query.id
 		};
-
-		let mysqlConfig = extend (true, clone (require ('../config')), {
-			db: {
-				host: model.data.host,
-				port: model.data.port,
-				username: model.data.username,
-				password: model.data.password,
-				database: model.data.database,
-				ssl: parseInt (model.data.ssl) === 1 ? true : false
-			},
-			storageSystem: 'mysql'
-		});
-		let tables = await new Database.Class (mysqlConfig).FetchTables ();
-		this.templateData.tables = tables;
 
 		response.render ('mysql/detail', this.templateData);
 	}
@@ -351,6 +339,33 @@ class MySQL extends Base {
 
 			response.redirect (id !== null ? '/mysql/edit' : '/mysql/new');
 		}
+	}
+
+	/**
+	 * Get list of Database tables.
+	 */
+	async JsonMysqlTables (request, response) {
+		let model = await new MySQLDBModel ().Load (request.query.id);
+		
+		if (!Session.Instance.IsValidUser (request, response, model.data.user_id)) {
+			response.json ({reload: true});
+			return;
+		}
+
+		let mysqlConfig = extend (true, clone (require ('../config')), {
+			db: {
+				host: model.data.host,
+				port: model.data.port,
+				username: model.data.username,
+				password: model.data.password,
+				database: model.data.database,
+				ssl: parseInt (model.data.ssl) === 1 ? true : false
+			},
+			storageSystem: 'mysql'
+		});
+		let tables = await new Database.Class (mysqlConfig).FetchTables ();
+
+		response.json ({tables: tables});
 	}
 }
 
