@@ -1,15 +1,22 @@
 {
-    "env": {
+	"env": {
         "browser": true,
         "es6": true,
         "node": true
     },
-    "extends": "react-app",
+	"extends": ["tslint-react"],
+	"linterOptions": {
+		"exclude": [
+			"config/**/*.js",
+			"node_modules/**/*.ts",
+			"coverage/lcov-report/*.js"
+		]
+	},
     "parserOptions": {
         "ecmaVersion": 2017,
         "sourceType": "module"
     },
-    "rules": {
+	"rules": {
         "indent": [
             "error",
 			"tab",
@@ -26,8 +33,6 @@
         "semi": [
             "error",
             "always"
-		],
-		"no-whitespace-before-property": "off",
-        "array-callback-return": "off"
+		]
     }
 }
