@@ -1,7 +1,7 @@
 {
 	"name": "tch-myngo",
 	"productName": "MynGo",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"author": "Tomas Chyly <chyly@tomas-chyly.com> (https://tomas-chyly.com/en/)",
 	"license": "GPL v3",
 	"description": "Database inspection and management system with interactive console.",

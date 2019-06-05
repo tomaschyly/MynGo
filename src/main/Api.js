@@ -30,7 +30,7 @@ class Api {
 			platform: process.platform,
 			name: appPackage.productName,
 			version: appPackage.version,
-			settings: Main.config.Get ('app-settings')
+			settings: Api_static.main.config.Get ('app-settings')
 		};
 
 		switch (process.platform) {

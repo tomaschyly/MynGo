@@ -3,16 +3,29 @@ import * as cog from './icon/cog.svg';
 
 import * as React from 'react';
 import * as ReactRouterDom from 'react-router-dom';
+import User from './model/User';
+import Router from './Router';
 import Svg from './component/Svg';
+
+declare global {
+	interface Window {
+		require: Function
+	}
+}
+
+const {ipcRenderer} = window.require ('electron');
 
 export interface Props {}
 
-interface State {
-	mainParameters?: object
+export interface State {
+	mainParameters?: object,
+	user?: User
 }
 
 class App extends React.Component<Props, State> {
 	static Instance?: App;
+
+	mainParametersListener?: Function;
 
 	/**
 	 * App initialization.
@@ -20,9 +33,7 @@ class App extends React.Component<Props, State> {
 	constructor (props: Props) {
 		super (props);
 
-		this.state = {
-			mainParameters: undefined
-		};
+		this.state = {};
 	}
 
 	/**
@@ -30,6 +41,12 @@ class App extends React.Component<Props, State> {
 	 */
 	componentDidMount () {
 		App.Instance = this;
+
+		this.mainParametersListener = (event: object, message: object) => {
+			this.setState ({mainParameters: message});
+		};
+		ipcRenderer.on ('main-parameters', this.mainParametersListener);
+		ipcRenderer.send ('main-parameters');
 	}
 
 	/**
@@ -37,6 +54,9 @@ class App extends React.Component<Props, State> {
 	 */
 	componentWillUnmount () {
 		App.Instance = undefined;
+
+		ipcRenderer.removeListener ('main-parameters', this.mainParametersListener);
+		this.mainParametersListener = undefined;
 	}
 
 	/**
@@ -49,7 +69,9 @@ class App extends React.Component<Props, State> {
 			return (
 				<ReactRouterDom.HashRouter>
 					<div id="app">
-						WIP
+						<div id="content">
+							<Router/>
+						</div>
 					</div>
 				</ReactRouterDom.HashRouter>
 			);
