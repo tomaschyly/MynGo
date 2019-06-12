@@ -1,7 +1,7 @@
 {
 	"name": "tch-myngo",
 	"productName": "MynGo",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"author": "Tomas Chyly <chyly@tomas-chyly.com> (https://tomas-chyly.com/en/)",
 	"license": "GPL v3",
 	"description": "Database inspection and management system with interactive console.",
@@ -27,16 +27,16 @@
 		"electron": "^5.0.2",
 		"electron-devtools-installer": "^2.2.4",
 		"find-free-port": "^2.0.0",
+		"react": "^16.8.6",
+		"react-dom": "^16.8.6",
+		"react-router-dom": "^5.0.0",
+		"react-scripts-ts": "3.1.0",
 		"shelljs": "^0.8.3",
 		"typescript": "^3.5.1",
 		"wait-on": "^3.2.0"
 	},
 	"dependencies": {
 		"fs-extra": "^8.0.1",
-		"react": "^16.8.6",
-		"react-dom": "^16.8.6",
-		"react-router-dom": "^5.0.0",
-		"react-scripts-ts": "3.1.0",
 		"tch-database": "^0.5.0",
 		"write-file-atomic": "^3.0.0"
 	}

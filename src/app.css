@@ -1,6 +1,6 @@
 /*** App styles ***/
 #app-loader { display: flex; flex: 1 0 auto; justify-content: center; align-items: center; }
 #app-loader div { display: block; padding: 16px; border: 1px solid black; border-radius: 50%; background: white; }
-#app-loader .svg { display: block; flex: 0 0 auto; width: 48px; height: 48px; color: black; }
+#app-loader svg { display: block; flex: 0 0 auto; width: 48px; height: 48px; color: black; }
 
 #app { display: flex; flex-direction: column; flex: 1 0 auto; }

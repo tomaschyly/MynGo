@@ -1,15 +1,16 @@
 import './app.css';
-import * as cog from './icon/cog.svg';
+import Cog from  './icon/Cog';
 
 import * as React from 'react';
 import * as ReactRouterDom from 'react-router-dom';
 import User from './model/User';
+import TitleBar from './component/TitleBar';
 import Router from './Router';
-import Svg from './component/Svg';
 
 declare global {
+	// noinspection JSUnusedGlobalSymbols
 	interface Window {
-		require: Function
+		require: Function;
 	}
 }
 
@@ -17,15 +18,28 @@ const {ipcRenderer} = window.require ('electron');
 
 export interface Props {}
 
+export interface MainParameters {
+	apiUrl: string;
+	directory: {
+		documents: string;
+	};
+	platform: string;
+	name: string;
+	version: string;
+	settings: any | null
+}
+
 export interface State {
-	mainParameters?: object,
-	user?: User
+	title: string;
+	mainParameters?: MainParameters;
+	user?: User;
 }
 
 class App extends React.Component<Props, State> {
-	static Instance?: App;
+	static Instance: App;
 
-	mainParametersListener?: Function;
+	private readonly appTitle: string;
+	private mainParametersListener?: Function;
 
 	/**
 	 * App initialization.
@@ -33,17 +47,22 @@ class App extends React.Component<Props, State> {
 	constructor (props: Props) {
 		super (props);
 
-		this.state = {};
+		App.Instance = this;
+
+		const title = document.getElementById ('document-title');
+		this.appTitle = title && title.dataset.title ? title.dataset.title : '';
+
+		this.state = {
+			title: document.title
+		};
 	}
 
 	/**
 	 * First rendered to DOM.
 	 */
 	componentDidMount () {
-		App.Instance = this;
-
-		this.mainParametersListener = (event: object, message: object) => {
-			this.setState ({mainParameters: message});
+		this.mainParametersListener = (event: any, message: MainParameters) => {
+			setTimeout (() => this.setState ({mainParameters: message}), 400);
 		};
 		ipcRenderer.on ('main-parameters', this.mainParametersListener);
 		ipcRenderer.send ('main-parameters');
@@ -53,8 +72,6 @@ class App extends React.Component<Props, State> {
 	 * Called before component is removed from DOM.
 	 */
 	componentWillUnmount () {
-		App.Instance = undefined;
-
 		ipcRenderer.removeListener ('main-parameters', this.mainParametersListener);
 		this.mainParametersListener = undefined;
 	}
@@ -63,12 +80,16 @@ class App extends React.Component<Props, State> {
 	 * Render the component into html.
 	 */
 	render () {
-		const {mainParameters} = this.state;
+		const {title, mainParameters} = this.state;
 
 		if (mainParameters) {
+			const classNames = [mainParameters.platform];
+			
 			return (
 				<ReactRouterDom.HashRouter>
-					<div id="app">
+					<div id="app" className={classNames.join (' ')}>
+						<TitleBar title={title} mainParameters={mainParameters}/>
+
 						<div id="content">
 							<Router/>
 						</div>
@@ -79,11 +100,26 @@ class App extends React.Component<Props, State> {
 			return (
 				<div id="app-loader">
 					<div>
-						<Svg path={cog} className="cog spin"/>
+						<Cog className="cog spin"/>
 					</div>
 				</div>
 			);
 		}
+	}
+
+	/**
+	 * Set new view title.
+	 */
+	SetTitle (title: string) {
+		let newTitle = '';
+
+		if (title.length > 0) {
+			newTitle = `${title} - ${this.appTitle}`;
+		} else {
+			newTitle = this.appTitle;
+		}
+
+		this.setState ({title: newTitle});
 	}
 }
 

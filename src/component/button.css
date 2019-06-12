@@ -1,0 +1,13 @@
+/*** Button styles ***/
+button { display: inline-block; width: auto; height: auto; padding: 6px 8px; border: 2px solid black; border-radius: 8px; outline: 0; margin: 0 0 16px 0; color: black; font-size: 20px; font-weight: bold; background: transparent; cursor: pointer; transition: border 0.4s linear, color 0.4s linear, background 0.4s linear; }
+button.active { background: #666666; }
+button:hover,
+button:focus { color: white; background: black; }
+.button-red { border-color: red; }
+.button-red.active,
+.button-red:hover,
+.button-red:focus { color: white; background: red; }
+button.icon { padding: 4px; }
+button.icon-larger { padding: 2px; }
+button svg { display: block; width: 18px; height: 18px; padding: 2px; }
+button.icon-larger svg { width: 28px; height: 28px; }

@@ -1,6 +1,6 @@
 # MynGo
 
-**NOTICE: This one is on hold. I have decided not to continue to use Express inside Electron. Instead I may refactor with React which I use in [FileCtor](https://github.com/tomaschyly/FileCtor).**
+**NOTICE: This one is on hold/low priority refactor to React with Typescript. I have decided not to continue to use Express inside Electron.**
 
 Database inspection and management system with interactive console.
 
@@ -16,9 +16,9 @@ The idea is to have something similar to [phpMyAdmin](https://www.phpmyadmin.net
 
 This app is intended to be crossplatform, currently developed and tested on Windows 10 and MacOS. Ubuntu will follow.
 
-App is using [Electron](https://electronjs.org/) and [Express](https://expressjs.com/) as it was originally ment for me to learn using and simultaneously improve in both Electron and Node.js in server environment.
+App used to use [Electron](https://electronjs.org/) and [Express](https://expressjs.com/) as it was originally ment for me to learn using and simultaneously improve in both Electron and Node.js in server environment.
 
-App is currently not codesigned which means that on Windows it will ask you once and on MacOS repeatedly for network access.
+But now app uses [Electron](https://electronjs.org/) with [React](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/). I am using it to improve my skills with React and to learn to use Typescript.
 
 ## How to Use
 
