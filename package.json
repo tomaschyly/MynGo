@@ -24,7 +24,7 @@
 		"@types/react-router-dom": "^4.3.3",
 		"concurrently": "^4.1.0",
 		"cross-env": "^5.2.0",
-		"electron": "^5.0.2",
+		"electron": "^7.2.4",
 		"electron-devtools-installer": "^2.2.4",
 		"find-free-port": "^2.0.0",
 		"react": "^16.8.6",
